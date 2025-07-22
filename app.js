@@ -13,8 +13,11 @@ app.get("/",function(req,res){
 });
 
 app.post("/",function(req,res){
-    var item=req.body.ele1;
-    items.push(item);
+    var item = req.body.ele1;
+    // Server-side validation: only add non-empty, non-whitespace tasks
+    if (item && item.trim().length > 0) {
+        items.push(item.trim());
+    }
     res.redirect("/");
 });
 
